@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "nombre": "Juan Poti",
+    "email": "juan@mail.com",
+    "estado": "lead"
+  },
+  {
+    "id": 2,
+    "nombre": "Maria Paz",
+    "email": "maria@mail.com",
+    "estado": "activo"
+  }
+]
