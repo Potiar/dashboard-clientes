@@ -10,5 +10,11 @@
     "nombre": "Maria Paz",
     "email": "maria@mail.com",
     "estado": "activo"
+  },
+  {
+    "id": 1774620233199,
+    "nombre": "pedro",
+    "email": "porro@gmail.com",
+    "estado": "inactivo"
   }
 ]
