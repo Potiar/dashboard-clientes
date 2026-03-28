@@ -4,7 +4,8 @@ import ClienteForm from './components/ClienteForm'
 
 function App() {
   const [clientes, setClientes] = useState([])
-  const [filtro, setFiltro] = useState('todos')   
+  const [filtro, setFiltro] = useState('todos')
+  const [busqueda, setBusqueda] = useState('')    // ← nuevo estado para la búsqueda
 
   useEffect(() => {
     fetch('http://localhost:3001/clientes')
@@ -36,16 +37,33 @@ function App() {
       })
   }
 
-  // Filtra la lista según el estado seleccionado
-  const clientesFiltrados = filtro === 'todos'
-    ? clientes
-    : clientes.filter(c => c.estado === filtro)
+  // Primero filtra por estado, luego por búsqueda
+  const clientesFiltrados = clientes
+    .filter(c => filtro === 'todos' || c.estado === filtro)
+    .filter(c => {
+      const texto = busqueda.toLowerCase()
+      return (
+        c.nombre.toLowerCase().includes(texto) ||
+        c.email.toLowerCase().includes(texto)
+      )
+    })
 
   return (
     <div style={{ padding: '20px' }}>
       <h1>Dashboard de Clientes</h1>
       <ClienteForm onAgregarCliente={agregarCliente} />
       <hr />
+
+      {/* Buscador */}
+      <div style={{ marginBottom: '12px' }}>
+        <input
+          type="text"
+          placeholder="Buscar por nombre o email..."
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+          style={{ padding: '6px', width: '300px' }}
+        />
+      </div>
 
       {/* Botones de filtro */}
       <div style={{ marginBottom: '12px' }}>
@@ -65,9 +83,15 @@ function App() {
         ))}
       </div>
 
+      {/* Mensaje si no hay resultados */}
+      {clientesFiltrados.length === 0 && (
+        <p style={{ color: 'gray' }}>No se encontraron clientes.</p>
+      )}
+
       <ClientesList clientes={clientesFiltrados} onCambiarEstado={cambiarEstado} />
     </div>
   )
 }
+
 
 export default App
