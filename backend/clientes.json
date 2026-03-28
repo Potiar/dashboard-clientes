@@ -16,5 +16,11 @@
     "nombre": "pedro",
     "email": "porro@gmail.com",
     "estado": "inactivo"
+  },
+  {
+    "id": 1774705085249,
+    "nombre": "asd",
+    "email": "sda@ads.dsf",
+    "estado": "lead"
   }
 ]
