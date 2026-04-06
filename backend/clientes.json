@@ -34,5 +34,11 @@
     "nombre": "`puto",
     "email": "chanw@gei.com",
     "estado": "activo"
+  },
+  {
+    "id": 1775494144127,
+    "nombre": "ivan chapenco",
+    "email": "chapenco@ivan.com",
+    "estado": "inactivo"
   }
 ]
